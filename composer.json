@@ -1,0 +1,24 @@
+{
+    "name": "rap2hpoutre/convert-accent-characters",
+    "description": "Converts all accent characters to ASCII characters",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rap2h",
+            "email": "raphaelht@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    },
+    "autoload": {
+        "files": ["src/convert_accent_characters.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rap2hpoutre\\ConvertAccentCharacters\\Tests\\": "tests/"
+        }
+    }
+}
