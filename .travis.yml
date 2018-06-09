@@ -1,10 +1,12 @@
 language: php
 
 php:
+  - 7.0
   - 7.1
+  - 7.2
 
 install:
-  - travis_retry composer install --no-interaction --prefer-source
+  - travis_retry composer update --no-interaction --prefer-source
 
 script:
   - vendor/bin/phpunit

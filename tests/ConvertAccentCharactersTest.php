@@ -10,11 +10,39 @@ use function Rap2hpoutre\ConvertAccentCharacters\convert_accent_characters;
  */
 class ConvertAccentCharactersTest extends TestCase
 {
-    public function testConversion()
+    public function conversionDataProvider()
     {
-        $this->assertEquals('Hello', convert_accent_characters('Hello'));
-        $this->assertEquals('Ca plait a sa majeste', convert_accent_characters('Ça plaît à sa majesté'));
-        $this->assertEquals('Wikipedia', convert_accent_characters('Wikipédia'));
-        $this->assertEquals('Strass', convert_accent_characters('Straß', 'de_DE'));
+        return [
+            ['Hello', 'Hello'],
+            ['Ca plait a sa majeste', 'Ça plaît à sa majesté'],
+            ['Wikipedia', 'Wikipédia'],
+        ];
+    }
+
+    /**
+     * @dataProvider conversionDataProvider
+     */
+    public function testConversion($expectedString, $string)
+    {
+        $this->assertEquals($expectedString, convert_accent_characters($string));
+    }
+
+    public function conversionLocaleDataProvider()
+    {
+        return [
+            ['Strass', 'Straß', 'de_DE'],
+            ['Stras', 'Straß', 'da_DK'],
+            ['Stras', 'Straß', 'ca'],
+            ['Stras', 'Straß', 'sr_RS'],
+            ['Stras', 'Straß', 'bs_BA'],
+        ];
+    }
+
+    /**
+     * @dataProvider conversionLocaleDataProvider
+     */
+    public function testConversionWithLocale($expectedString, $string, $locale)
+    {
+        $this->assertEquals($expectedString, convert_accent_characters($string, $locale));
     }
 }
